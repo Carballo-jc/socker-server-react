@@ -1,8 +1,9 @@
-const express = require('express');
-const http    = require('http');
-const socketio  = require('socket.io');
-const path    = require('path');
-const Socket = require('./socket');
+const express  = require('express');
+const http     = require('http');
+const socketio = require('socket.io');
+const path     = require('path');
+const Socket   = require('./socket');
+const cors     = require('cors');
 
 
 class Server {
@@ -19,7 +20,8 @@ class Server {
 
     middelwares(){
         //despliegue del directorio publico
-        this.app.use( express.static( path.resolve( __dirname, '../public')))
+        this.app.use( express.static( path.resolve( __dirname, '../public')));
+        this.app.use( cors());
     };
     socketConfig(){
         new Socket( this.io );
